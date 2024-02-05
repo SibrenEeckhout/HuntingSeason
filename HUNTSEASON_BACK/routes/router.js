@@ -1,13 +1,13 @@
 import { Router } from 'https://deno.land/x/oak/mod.ts';
-import { getAllUser, getUserById } from './controllers/users.js';
+import { getUsersController, addUserController } from '../controllers/users.js';
 
 const router = new Router();
 
 router.get('/', (context) => {
-  context.response.body = 'Server is listerning on 3000';
+  context.response.body = 'Server is listening on 3000';
 });
 
-router.get('/user', getAllUser);
-router.get('/user/:id', getUserById);
+router.get('/user', getUsersController);
+router.get('/user/:id', addUserController);
 
 export default router;

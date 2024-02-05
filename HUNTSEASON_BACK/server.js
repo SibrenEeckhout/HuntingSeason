@@ -1,9 +1,6 @@
-import {
-  Application,
-  isHttpError,
-  Status,
-} from 'https://deno.land/x/oak/mod.ts';
-
+//deno run --allow-net server.js
+import {Application,isHttpError,Status,} from 'https://deno.land/x/oak/mod.ts';
+import {  Router } from 'https://deno.land/x/oak/mod.ts';
 import router from './routes/router.js';
 
 const app = new Application();
