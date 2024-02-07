@@ -8,3 +8,13 @@ const app = express();
 app.use("/", router);
 
 app.listen(8000);
+
+
+//tomorrow 
+/*
+- add controller for user.
+
+- add authentication for user.
+
+- add modal for user. 
+*/
