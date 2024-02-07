@@ -8,7 +8,7 @@ const dbConfig = {
   hostname: env["URL"],
   username: env["NAME"],
   password: env["PASSWORD"],
-  db: env["DATABASE"], // Replace with your database name
+  db: env["DATABASE"],
 };
 
 const client = await new Client().connect({
