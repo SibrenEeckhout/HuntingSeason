@@ -1,4 +1,4 @@
-import client from "../config/database.js";
+import client from "../../config/database.js";
 
 try {
     await client.execute(`CREATE TABLE IF NOT EXISTS quotes (

@@ -11,6 +11,18 @@ First fill in all required information in the .env file:
 - database url, user, password, name. 
 
 
-### run create and seeders:
+### scripts:
 
-run the scripts ```deno run .\pre\databaseTables.js``` to create the tables and ```deno run .\pre\databaseSeeders.js``` to seed the tables. 
+There are currently three script:
+- databaseTables.js (create the tables in the database)
+- databaseSeeders.js (seed the tables in the database)
+- databaseRemoveTables.js (remove the tables in the database)
+
+#### create tables and seed:
+
+run the following script: ```deno run --unstable --allow-all .\run.js``` in the root directory. This script will run the seeder and table scripts automatically. 
+
+#### remove tables:
+
+run the following script: ```deno run --unstable --allow-all .\pre\scritps\databaseRemoveTables.js``` in the root directory. This will remove all the tables in the database. 
+
