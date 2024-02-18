@@ -1,5 +1,6 @@
 <script>
   import Button from "../components/Button.svelte";
+  import Map from "../components/Map.svelte";
 import Player from "../components/Player.svelte";
 
 let playerOrHunter = "hunter"
@@ -7,7 +8,7 @@ let playerOrHunter = "hunter"
 
 <section>
     <div id="map">
-
+        <Map></Map>
     </div>
     <div id="info">
         <h3>4 minutes left for new ping.</h3>
@@ -40,7 +41,7 @@ let playerOrHunter = "hunter"
     }
 
     #map{
-        height: 50vh;
+        height: 60vh;
     }
 
     #info{
