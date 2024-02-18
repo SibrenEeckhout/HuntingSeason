@@ -2,6 +2,8 @@
 
 This is the backend of the hunting season application that i(Sibren Eeckhout) am developing. This backend api is made out of deno and express.js. For the database am i using a Mysql database. 
 
+Thoe run the API execute: ```deno run --allow-all app.js```
+
 ## Get started 
 
 ### .env:
@@ -24,5 +26,5 @@ run the following script: ```deno run --unstable --allow-all .\run.js``` in the 
 
 #### remove tables:
 
-run the following script: ```deno run --unstable --allow-all .\pre\scritps\databaseRemoveTables.js``` in the root directory. This will remove all the tables in the database. 
+run the following script: ```deno run --unstable --allow-all .\pre\scripts\databaseRemoveTables.js``` in the root directory. This will remove all the tables in the database. 
 
