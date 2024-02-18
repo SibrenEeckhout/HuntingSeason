@@ -31,8 +31,9 @@ class UserController {
       const insertedUser = await insertUser(newUser.name, newUser.number, newUser.email, newUser.password);
 
       // Generate a JWT token for the newly registered user
-      const token = generateToken(insertedUser.id);
-
+      console.log("ets");
+      const token = UserController.generateToken(insertedUser.id);
+      console.log("asdf");
       // Respond with the inserted user and the JWT token
       res.status(201).json({ user: insertedUser, token });
     } catch (error) {

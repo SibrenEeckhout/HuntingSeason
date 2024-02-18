@@ -6,7 +6,7 @@ const getUserByEmail = async (email) => {
   try {
     const query = `
       SELECT * FROM users
-      WHERE email = ${email}`;
+      WHERE email = "${email}"`;
     const result = await client.query(query);
 
     return result; // Return the first user found (assuming ID is unique)
