@@ -4,12 +4,11 @@ import UserController from "../controllers/userController.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Welcome to the Dinosaur API!");
-});
+router.get("/", (req, res) => {res.send("Welcome to the Dinosaur API!");});
 
 router.get("/users", UserController.getUsers);
 
 router.post("/users/user", UserController.addNewUser);
+router.get("/users/user/id/:id", UserController.getUserById)
 
 export default router;

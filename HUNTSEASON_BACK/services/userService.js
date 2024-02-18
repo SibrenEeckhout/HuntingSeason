@@ -24,5 +24,17 @@ const insertUser = async (name, number, email, password) => {
   }
 };
 
+const getUserById = async (userId) => {
+  try {
+    const query = `
+      SELECT * FROM users
+      WHERE id = ${userId}`;
+    const result = await client.query(query);
 
-export { getUsersFromDatabase, insertUser };
+    return result; // Return the first user found (assuming ID is unique)
+  } catch (error) {
+    throw new Error(`Error retrieving user by ID: ${error.message}`);
+  }
+};
+
+export { getUsersFromDatabase, insertUser, getUserById };
