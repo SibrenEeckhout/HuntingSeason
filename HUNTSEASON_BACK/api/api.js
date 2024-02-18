@@ -10,4 +10,6 @@ router.get("/", (req, res) => {
 
 router.get("/users", UserController.getUsers);
 
+router.post("/users/user", UserController.addNewUser);
+
 export default router;
