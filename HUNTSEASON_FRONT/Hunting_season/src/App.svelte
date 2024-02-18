@@ -8,10 +8,12 @@
   import Endscreen from './screens/Endscreen.svelte';
   import Login from './screens/Login.svelte';
   import Register from './screens/Register.svelte';
+  import CurrentSession from './screens/CurrentSession.svelte';
 </script>
 
 <main>
-  <Onboarding></Onboarding>
+  <CurrentSession></CurrentSession>
+  <!--<Onboarding></Onboarding>
   <Login></Login>
   <Register></Register>
   <Home></Home>
@@ -19,7 +21,8 @@
   <Create></Create>
   <LobbyHunter></LobbyHunter>
   <Menu></Menu>
-  <Endscreen></Endscreen>
+  <Endscreen></Endscreen>-->
+
 </main>
 
 <style>

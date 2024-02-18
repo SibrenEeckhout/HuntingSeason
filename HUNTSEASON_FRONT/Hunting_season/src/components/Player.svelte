@@ -1,10 +1,10 @@
 <script>
-
+export let type = 'green-bar';
 </script>
 
 <article>
     <p>User</p>
-    <div class="green-bar"></div>
+    <div class={type}></div>
 </article>
 
 
