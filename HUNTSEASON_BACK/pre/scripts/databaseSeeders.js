@@ -1,6 +1,8 @@
 import client from "../../config/database.js";
 import { seedersQuotes } from "../data/seeders/quotes.js";
 import { seedersUsers } from "../data/seeders/users.js";
+import {seedersSessions} from "../data/seeders/session.js"
+import {seedersUserSessions}from "../data/seeders/userSession.js"
 
 async function seedData(tableName, data) {
     try {
@@ -19,6 +21,8 @@ async function seedAllTables() {
     try {
         await seedData('quotes', seedersQuotes);
         await seedData('users', seedersUsers);
+        await seedData('users', seedersSessions);
+        await seedData('users', seedersUserSessions);
     } finally {
         await client.close();
     }

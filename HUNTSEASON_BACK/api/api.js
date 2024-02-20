@@ -8,10 +8,12 @@ const router = express.Router();
 
 router.get("/", (req, res) => {res.send("Welcome to the Dinosaur API!");});
 
+// user related
 router.get("/users", UserController.getUsers);
-
 router.post("/users/user", UserController.addNewUser);
 router.post('/login', login);
 router.get("/users/user/id/:id", authenticateToken,UserController.getUserById)
+
+// session related
 
 export default router;
