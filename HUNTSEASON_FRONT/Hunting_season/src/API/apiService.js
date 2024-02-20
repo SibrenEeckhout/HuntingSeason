@@ -1,7 +1,7 @@
-// apiService.js
-export async function fetchData() {
+class ApiService {
+  async get(url) {
     try {
-      const response = await fetch('http://localhost:8000/users');
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -11,4 +11,25 @@ export async function fetchData() {
       throw error;
     }
   }
-  
+
+  async post(url, data) {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error posting data:', error);
+      throw error;
+    }
+  }
+}
+
+export default new ApiService();

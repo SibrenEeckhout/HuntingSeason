@@ -1,8 +1,12 @@
 <script>
 	import Register from './Register.svelte';
     import Button from "../components/Button.svelte";
+    import ApiService from "../API/apiService.js"
     export let updateNavigation;
     export let updateFromPreviousNavigation;
+
+    let email = ''; 
+    let password = '';
   
     function handleClick(newNavigation) {
         updateNavigation(newNavigation);
@@ -12,7 +16,22 @@
         updateFromPreviousNavigation();
     }
   
-  </script>
+    async function handleSubmit(event) {
+    event.preventDefault(); 
+    
+    const formData = {
+      email: email,
+      password: password
+    };
+
+    try {
+      const response = await ApiService.post('http://localhost:8000/login', formData);
+      handleClick("home");
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
+    }
+</script>
   
   
   <section>
@@ -22,10 +41,10 @@
           <h2>Login</h2>
       </div>
       <div id="form">
-          <form action="">
-              <input class="red" placeholder="Name">
-              <input class="red" placeholder="Password">
-              <Button type="small" >Register</Button>
+        <form on:submit={handleSubmit}>
+            <input class="red" placeholder="Email" bind:value={email}>
+            <input class="red" placeholder="Password" type="password" bind:value={password}>
+              <Button type="small" >Login</Button>
           </form>
           <p>"Don’t have an account yet?"</p>
           <Button type="small" on:click={() => handleClick("register")}>Register Here</Button>
