@@ -9,20 +9,28 @@
   import Login from './screens/Login.svelte';
   import Register from './screens/Register.svelte';
   import CurrentSession from './screens/CurrentSession.svelte';
+
+  let selectedNavigation = "onboarding"
+  let previousNavigation = ""
+
+  function updateNavigation(newNavigation) {
+    previousNavigation = selectedNavigation;
+    selectedNavigation = newNavigation;
+  }
+
+  function updateFromPreviousNavigation(){
+    updateNavigation(previousNavigation)
+  }
 </script>
 
 <main>
-  <CurrentSession></CurrentSession>
-  <!--<Onboarding></Onboarding>
-  <Login></Login>
-  <Register></Register>
-  <Home></Home>
-  <JoinWindow></JoinWindow>
-  <Create></Create>
-  <LobbyHunter></LobbyHunter>
-  <Menu></Menu>
-  <Endscreen></Endscreen>-->
-
+  {#if selectedNavigation == "onboarding"}
+  <Onboarding {updateNavigation}></Onboarding>
+  {:else if selectedNavigation == "login"}
+  <Login {updateNavigation} {updateFromPreviousNavigation}></Login>
+  {:else if selectedNavigation == "register"}
+  <Register {updateNavigation} {updateFromPreviousNavigation}></Register>
+  {/if}
 </main>
 
 <style>

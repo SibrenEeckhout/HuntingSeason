@@ -1,10 +1,18 @@
 <script>
-    export let type = 'red';
-    export let flat = false;
-    export let inverse = false;
+    import { createEventDispatcher } from 'svelte';
+
+export let type = 'red';
+export let flat = false;
+export let inverse = false;
+
+const dispatch = createEventDispatcher();
+
+function handleClick(event) {
+    dispatch('click', event);
+}
 </script>
 
-<button class={type} class:flat={flat} class:inverse={inverse}>
+<button class={type} class:flat={flat} class:inverse={inverse} on:click={handleClick}>
     <slot></slot>
 </button>
 

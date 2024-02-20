@@ -1,7 +1,10 @@
 <script>
     import Button from "../components/Button.svelte";
+    export let updateNavigation;
   
-  
+    function handleClick(newNavigation) {
+        updateNavigation(newNavigation);
+    }
   </script>
   
   
@@ -13,7 +16,7 @@
       <div id="text">
           <h2>“You can run, but you can't hide.”</h2>
           <p>Can you outmaneuver the hunter and secure your escape?"</p>
-          <Button class="red">Get Started</Button>
+          <Button class="red" on:click={() => handleClick("login")}>Get Started</Button>
       </div>
   </section>
   
