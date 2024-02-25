@@ -6,6 +6,7 @@
     export let updateNavigation;
     
     let name = ''; 
+    let sessions = []; 
 
     function handleClick(newNavigation) {
         updateNavigation(newNavigation);
@@ -16,8 +17,11 @@
             const userId = UserStore.retrieveIdFromCache(); // Retrieve the user ID from the cache
             const token = UserStore.retrieveTokenFromCache(); // Retrieve the token from the cache
 
-            const response = await ApiService.get(`http://localhost:8000/users/user/id/${userId}`, null, token);
-            name = response[0].name;
+            const responseUser = await ApiService.get(`http://localhost:8000/users/user/id/${userId}`, null, token);
+            name = responseUser[0].name;
+
+            const responseSessions = await ApiService.get(`http://localhost:8000/sessions`, null, null);
+            sessions = responseSessions;
         } catch (error) {
             console.error('Error logging in:', error);
             name = "Guest";
@@ -43,7 +47,9 @@
     </section>
     <section id="second">
         <ul>
-
+            {#each sessions as session} 
+                <Session session={session}></Session> 
+            {/each}
         </ul>
     </section>
 </section>

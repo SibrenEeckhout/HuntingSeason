@@ -1,6 +1,6 @@
 <script>
   import Button from "./Button.svelte";
-
+  export let session; 
 
 </script>
 
@@ -10,8 +10,8 @@
             <img src="Images/basic_1.png" alt="">
         </div>
         <div>
-            <h3>KSA Izegem</h3>
-            <p>Jonghernieuwers</p>
+            <h3>{session.title}</h3>
+            <p>{session.subtitle}</p>
             <!-- svelte-ignore missing-declaration -->
             <Button type="fullLength">Join</Button>
         </div>
