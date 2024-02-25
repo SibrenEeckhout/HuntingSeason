@@ -1,10 +1,18 @@
 <script>
   import Button from "./Button.svelte";
+  import { createEventDispatcher } from 'svelte';
+
   export let session; 
 
+  const dispatch = createEventDispatcher();
+
+    function handleClick(event) {
+        dispatch('joinSession', session);
+    }  
 </script>
 
-<li>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<li on:click={handleClick}>
     <article>
         <div>
             <img src="Images/basic_1.png" alt="">

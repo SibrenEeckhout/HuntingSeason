@@ -1,8 +1,12 @@
 <script>
+	import { onMount } from 'svelte';
 	import Player from './../components/Player.svelte';
 	import Button from '../components/Button.svelte';
+    import SessionStore from '../stores/sessionStore.js';
     export let updateNavigation;
     export let updateFromPreviousNavigation;
+
+    let sessionData = {};
 
     function handleClick(newNavigation) {
         updateNavigation(newNavigation);
@@ -11,6 +15,20 @@
     function previousNavigation() {
         updateFromPreviousNavigation();
     }
+
+    onMount(async () => {
+    try {
+        // Retrieve session data from cache
+        const { title, gameId } = SessionStore.retrieveSessionFromCache();
+        
+        // Assign the retrieved values to sessionData
+        sessionData = { title, gameId };
+
+        console.log(sessionData);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
 </script>
 
 <section>
@@ -18,8 +36,8 @@
     <div id="header">
         <h2>Lobby</h2>
     </div>
-    <h3>KSA Izegem</h3>
-    <h3>GameId: koas123</h3>
+    <h3>{sessionData.title}</h3>
+    <h3>GameId: {sessionData.gameId}</h3>
     <div>
         <div id="hunter">
             <h4>Hunter</h4>

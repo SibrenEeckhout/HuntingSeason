@@ -4,6 +4,7 @@
     import ApiService from "../API/apiService.js"
     import {onMount} from "svelte";
     export let updateNavigation;
+    export let setSession;
     
     let name = ''; 
     let sessions = []; 
@@ -28,6 +29,11 @@
         }
     });
 
+    function handleJoinSession(event) {
+    const sessionData = event.detail;
+        setSession(sessionData);
+    }
+
 </script>
 
 <section id="container">
@@ -48,7 +54,7 @@
     <section id="second">
         <ul>
             {#each sessions as session} 
-                <Session session={session}></Session> 
+                <Session session={session} on:joinSession={handleJoinSession}></Session> 
             {/each}
         </ul>
     </section>

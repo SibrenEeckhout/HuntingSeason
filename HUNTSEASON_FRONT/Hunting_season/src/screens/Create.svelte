@@ -2,6 +2,7 @@
 	import Button from '../components/Button.svelte';
     import UserStore from '../stores/userStore.js';
     import ApiService from "../API/apiService.js"
+    import SessionStore from "../stores/sessionStore.js"
     export let updateNavigation;
     export let updateFromPreviousNavigation;
     let title = ''; 
@@ -33,7 +34,10 @@
       const userId = UserStore.retrieveIdFromCache(); 
       const response = await ApiService.post(`http://localhost:8000/sessions/session/${userId}`, formData);
 
-      console.log(response);
+      const gameId = response.sessionId.gameId;
+      const sessionId = response.sessionId.sessionId;
+      SessionStore.loadSessionToCache(formData.title, gameId);
+      console.log(response.sessionId.gameId);
       handleClick("lobby")
     } catch (error) {
       console.error('Error creating session:', error);

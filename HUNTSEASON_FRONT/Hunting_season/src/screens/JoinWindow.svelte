@@ -1,21 +1,50 @@
 <script>
+  import UserStore from '../stores/userStore.js';
 	import Button from './../components/Button.svelte';
+    import ApiService from "../API/apiService.js"
+    export let updateNavigation;
+    export let updateFromPreviousNavigation;
+    export let potentialSession;
+    let gameId = ''; 
 
+    function handleClick(newNavigation) {
+        updateNavigation(newNavigation);
+    }
+
+    function previousNavigation() {
+        updateFromPreviousNavigation();
+    }
+
+    async function handleSubmit(event) {
+    event.preventDefault(); 
+
+    try {
+      const userId = UserStore.retrieveIdFromCache();
+
+      const response = await ApiService.post(`http://localhost:8000/sessions/session/${gameId}/join/${userId}`, null);
+      UserStore.loadTokenToCache(response.token);
+      UserStore.loadIdToCache(response.user.id);
+      handleClick("home");
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
+    }
 </script>
 
 <section>
-    <div id="image"><img src="Images/left_arrow.png" alt=""></div>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div id="image"><img src="Images/left_arrow.png" alt="" on:click={() => previousNavigation()}></div>
     <div id="header">
-        <h2>KSA Izegem</h2>
+        <h2>{potentialSession.title}</h2>
     </div>
 
     <div id="form">
-        <p>Jonghernieuwers</p>
+        <p>{potentialSession.subtitle}</p>
         <div id="pf"><img src="Images/basic_2.png" alt=""></div>
         <p id="spna">Description</p>
-        <p>This is a test game developed by the creators to tweak the layout of the application.</p>
-        <form action="">
-            <input type="text" placeholder="Enter Game id...">
+        <p>{potentialSession.description}</p>
+        <form action="" on:submit={handleSubmit}>
+            <input type="text" placeholder="Enter Game id..." bind:value={gameId}>
             <Button type="small" inverse={true}>Go back</Button>
             <Button type="small">Join</Button>
         </form>

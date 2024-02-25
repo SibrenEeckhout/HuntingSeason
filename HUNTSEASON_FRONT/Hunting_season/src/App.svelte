@@ -16,6 +16,8 @@
   let selectedNavigation = "onboarding"
   let previousNavigation = ""
 
+  let potentialSession = null; 
+
   function updateNavigation(newNavigation) {
     previousNavigation = selectedNavigation;
     selectedNavigation = newNavigation;
@@ -26,10 +28,23 @@
   }
 
   onMount(() => {
-    if(UserStore.retrieveIdFromCache != null){
-      updateNavigation("home")
+    try {
+      const userId = UserStore.retrieveIdFromCache();
+        if (userId != null) {
+            updateNavigation("home");
+        }else{
+          throw new Error();
+        }
+    } catch (error) {
+        console.error("Error occurred while checking cache:", error);
+        updateNavigation("login");
     }
-  });
+});
+
+  function setSession(session){
+    potentialSession = session;
+    updateNavigation("join")
+  }
 
 </script>
 
@@ -41,11 +56,13 @@
   {:else if selectedNavigation == "register"}
   <Register {updateNavigation} {updateFromPreviousNavigation}></Register>
   {:else if selectedNavigation == "home"}
-  <Home {updateNavigation} {updateFromPreviousNavigation}></Home>
+  <Home {updateNavigation} {updateFromPreviousNavigation} {setSession}></Home>
   {:else if selectedNavigation == "create"}
   <Create {updateNavigation} {updateFromPreviousNavigation}></Create>
   {:else if selectedNavigation == "lobby"}
   <LobbyHunter {updateNavigation} {updateFromPreviousNavigation}></LobbyHunter>
+  {:else if selectedNavigation == "join"}
+  <JoinWindow {updateNavigation} {updateFromPreviousNavigation} {potentialSession}></JoinWindow>
   {/if}
 </main>
 
