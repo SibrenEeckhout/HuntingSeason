@@ -1,6 +1,7 @@
 <script>
 	import Register from './Register.svelte';
     import Button from "../components/Button.svelte";
+    import UserStore from "../stores/userStore.js"
     import ApiService from "../API/apiService.js"
     export let updateNavigation;
     export let updateFromPreviousNavigation;
@@ -26,6 +27,8 @@
 
     try {
       const response = await ApiService.post('http://localhost:8000/login', formData);
+      UserStore.loadTokenToCache(response.token);
+      UserStore.loadIdToCache(response.user.id);
       handleClick("home");
     } catch (error) {
       console.error('Error registering user:', error);

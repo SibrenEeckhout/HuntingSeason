@@ -31,7 +31,9 @@
   {:else if selectedNavigation == "register"}
   <Register {updateNavigation} {updateFromPreviousNavigation}></Register>
   {:else if selectedNavigation == "home"}
-  <Home></Home>
+  <Home {updateNavigation} {updateFromPreviousNavigation}></Home>
+  {:else if selectedNavigation == "create"}
+  <Create {updateNavigation} {updateFromPreviousNavigation}></Create>
   {/if}
 </main>
 

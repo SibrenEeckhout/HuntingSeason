@@ -1,5 +1,11 @@
 <script>
 	import Session from './../components/Session.svelte';
+    import UserStore from '../stores/userStore.js';
+    export let updateNavigation;
+    
+    function handleClick(newNavigation) {
+        updateNavigation(newNavigation);
+    }
 
 </script>
 
@@ -10,7 +16,8 @@
             <div id="image"><img src="Images/vietnamface.JPG" alt=""></div>
         </div>
         <input type="text" placeholder="Search sessions...">
-        <div id="split">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div id="split" on:click={() => handleClick("create")}>
             <div id="hunter">
                 <p id="red">Become</p>
                 <p id="become">The hunter</p>

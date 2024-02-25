@@ -1,10 +1,20 @@
 <script>
 	import Button from '../components/Button.svelte';
+    export let updateNavigation;
+    export let updateFromPreviousNavigation;
+  
+    function handleClick(newNavigation) {
+        updateNavigation(newNavigation);
+    }
 
+    function previousNavigation() {
+        updateFromPreviousNavigation();
+    }
 </script>
 
 <section>
-    <div id="image"><img src="Images/left_arrow.png" alt=""></div>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div id="image"><img src="Images/left_arrow.png" alt="" on:click={() => previousNavigation()}></div>
     <div id="header">
         <h2>Make hunt</h2>
     </div>
