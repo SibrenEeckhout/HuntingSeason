@@ -1,18 +1,35 @@
 <script>
 	import Session from './../components/Session.svelte';
     import UserStore from '../stores/userStore.js';
+    import ApiService from "../API/apiService.js"
+    import {onMount} from "svelte";
     export let updateNavigation;
     
+    let name = ''; 
+
     function handleClick(newNavigation) {
         updateNavigation(newNavigation);
     }
+
+    onMount(async () => {
+        try {
+            const userId = UserStore.retrieveIdFromCache(); // Retrieve the user ID from the cache
+            const token = UserStore.retrieveTokenFromCache(); // Retrieve the token from the cache
+
+            const response = await ApiService.get(`http://localhost:8000/users/user/id/${userId}`, null, token);
+            name = response[0].name;
+        } catch (error) {
+            console.error('Error logging in:', error);
+            name = "Guest";
+        }
+    });
 
 </script>
 
 <section id="container">
     <section id="first">
         <div id="head">
-            <h3>Sibren Eeckhout</h3>
+            <h3>{name}</h3>
             <div id="image"><img src="Images/vietnamface.JPG" alt=""></div>
         </div>
         <input type="text" placeholder="Search sessions...">
@@ -26,16 +43,7 @@
     </section>
     <section id="second">
         <ul>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
-            <li><Session></Session></li>
+
         </ul>
     </section>
 </section>

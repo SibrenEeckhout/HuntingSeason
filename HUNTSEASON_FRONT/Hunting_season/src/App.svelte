@@ -9,6 +9,9 @@
   import Login from './screens/Login.svelte';
   import Register from './screens/Register.svelte';
   import CurrentSession from './screens/CurrentSession.svelte';
+  import UserStore from './stores/userStore.js';
+  import { onMount } from 'svelte';
+
 
   let selectedNavigation = "onboarding"
   let previousNavigation = ""
@@ -21,6 +24,13 @@
   function updateFromPreviousNavigation(){
     updateNavigation(previousNavigation)
   }
+
+  onMount(() => {
+    if(UserStore.retrieveIdFromCache != null){
+      updateNavigation("home")
+    }
+  });
+
 </script>
 
 <main>

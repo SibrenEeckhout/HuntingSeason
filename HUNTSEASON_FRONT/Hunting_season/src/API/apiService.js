@@ -1,10 +1,27 @@
 class ApiService {
-  async get(url) {
+  async get(url, body = null, accessToken = null) {
     try {
-      const response = await fetch(url);
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      if (accessToken) {
+        options.headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+
+      if (body) {
+        options.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(url, options);
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+
       return await response.json();
     } catch (error) {
       console.error('Error fetching data:', error);

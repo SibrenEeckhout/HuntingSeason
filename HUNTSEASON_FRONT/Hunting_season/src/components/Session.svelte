@@ -4,17 +4,19 @@
 
 </script>
 
-<article>
-    <div>
-        <img src="Images/basic_1.png" alt="">
-    </div>
-    <div>
-        <h3>KSA Izegem</h3>
-        <p>Jonghernieuwers</p>
-        <!-- svelte-ignore missing-declaration -->
-        <Button type="fullLength">Join</Button>
-    </div>
-</article>
+<li>
+    <article>
+        <div>
+            <img src="Images/basic_1.png" alt="">
+        </div>
+        <div>
+            <h3>KSA Izegem</h3>
+            <p>Jonghernieuwers</p>
+            <!-- svelte-ignore missing-declaration -->
+            <Button type="fullLength">Join</Button>
+        </div>
+    </article>
+</li>
 
 <style>
     article{
