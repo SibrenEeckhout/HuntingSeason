@@ -18,4 +18,6 @@ router.get("/users/user/id/:id", authenticateToken, UserController.getUserById)
 // session related
 router.post("/sessions/session/:id", sessionController.addSession)
 router.get("/sessions", sessionController.getSessions)
+router.post("/sessions/session/:id/join/:userId", sessionController.userJoin)
+
 export default router;

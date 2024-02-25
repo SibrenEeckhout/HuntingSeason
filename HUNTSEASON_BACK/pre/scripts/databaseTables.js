@@ -17,17 +17,18 @@ try {
         )`);
 
         await client.execute(`
-        CREATE TABLE IF NOT EXISTS sessions (
-            sessionId INT AUTO_INCREMENT PRIMARY KEY,
-            userId INT,
-            description VARCHAR(255), 
-            started BOOLEAN DEFAULT FALSE, 
-            ended BOOLEAN DEFAULT FALSE, 
-            title VARCHAR(255),
-            subtitle TEXT,
-            playtime TIME, -- Time data type for playtime
-            pingtime TIME -- Time data type for pingtime
-        )`);
+         CREATE TABLE IF NOT EXISTS sessions (
+        sessionId INT AUTO_INCREMENT PRIMARY KEY,
+        userId INT,
+        gameId VARCHAR(5), -- Add gameId column
+        description VARCHAR(255), 
+        started BOOLEAN DEFAULT FALSE, 
+        ended BOOLEAN DEFAULT FALSE, 
+        title VARCHAR(255),
+        subtitle TEXT,
+        playtime TIME,
+        pingtime TIME
+    )`);
     
 
     await client.execute(`
