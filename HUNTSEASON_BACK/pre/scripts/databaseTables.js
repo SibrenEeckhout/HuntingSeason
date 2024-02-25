@@ -16,17 +16,19 @@ try {
             password VARCHAR(255)
         )`);
 
-    await client.execute(`
+        await client.execute(`
         CREATE TABLE IF NOT EXISTS sessions (
             sessionId INT AUTO_INCREMENT PRIMARY KEY,
             userId INT,
-            started TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            ended TIMESTAMP,
+            description VARCHAR(255), 
+            started BOOLEAN DEFAULT FALSE, 
+            ended BOOLEAN DEFAULT FALSE, 
             title VARCHAR(255),
             subtitle TEXT,
             playtime TIME, -- Time data type for playtime
             pingtime TIME -- Time data type for pingtime
         )`);
+    
 
     await client.execute(`
         CREATE TABLE IF NOT EXISTS users_session (

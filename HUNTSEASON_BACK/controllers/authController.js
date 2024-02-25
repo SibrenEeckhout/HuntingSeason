@@ -20,7 +20,7 @@ export const login = async (req, res) => {
         }
 
         const token = generateToken(user);
-        res.json({ token });
+        res.json({ token, user});
     } catch (error) {
         console.error('Error logging in:', error);
         res.status(500).json({ message: 'Internal server error' });
