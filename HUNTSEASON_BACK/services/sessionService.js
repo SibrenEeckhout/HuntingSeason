@@ -17,6 +17,17 @@ class sessionService {
             throw error;
         }
     }
+
+    static async getAllSessions() {
+        try {
+            // Retrieve all sessions from the sessions table
+            const sessions = await client.execute(`SELECT * FROM sessions`);
+            return sessions.rows;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
     
 }
 

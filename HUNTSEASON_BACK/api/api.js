@@ -17,4 +17,5 @@ router.get("/users/user/id/:id", authenticateToken, UserController.getUserById)
 
 // session related
 router.post("/sessions/session/:id", sessionController.addSession)
+router.get("/sessions", sessionController.getSessions)
 export default router;

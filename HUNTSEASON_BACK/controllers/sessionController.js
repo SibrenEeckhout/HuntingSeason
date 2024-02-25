@@ -21,6 +21,15 @@ class sessionController {
       res.status(500).json({ message: error.message });
     }
   }
+
+  static async getSessions(req, res) {
+    try {
+      const sessions = await sessionService.getAllSessions();
+      res.json(sessions);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 }
 
 export default sessionController;
