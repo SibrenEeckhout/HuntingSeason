@@ -34,6 +34,7 @@
       const response = await ApiService.post(`http://localhost:8000/sessions/session/${userId}`, formData);
 
       console.log(response);
+      handleClick("lobby")
     } catch (error) {
       console.error('Error creating session:', error);
     }

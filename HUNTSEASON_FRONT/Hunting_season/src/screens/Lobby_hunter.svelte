@@ -1,7 +1,16 @@
 <script>
 	import Player from './../components/Player.svelte';
 	import Button from '../components/Button.svelte';
+    export let updateNavigation;
+    export let updateFromPreviousNavigation;
 
+    function handleClick(newNavigation) {
+        updateNavigation(newNavigation);
+    }
+
+    function previousNavigation() {
+        updateFromPreviousNavigation();
+    }
 </script>
 
 <section>
@@ -32,7 +41,7 @@
     </div>
     <div id="form">
         <Button type="small" inverse={true}>Go back</Button>
-        <Button type="small">Make hunt</Button>
+        <Button type="small">Start Hunt</Button>
     </div>
 </section>
 

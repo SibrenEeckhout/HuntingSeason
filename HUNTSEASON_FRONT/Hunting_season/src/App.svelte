@@ -44,6 +44,8 @@
   <Home {updateNavigation} {updateFromPreviousNavigation}></Home>
   {:else if selectedNavigation == "create"}
   <Create {updateNavigation} {updateFromPreviousNavigation}></Create>
+  {:else if selectedNavigation == "lobby"}
+  <LobbyHunter {updateNavigation} {updateFromPreviousNavigation}></LobbyHunter>
   {/if}
 </main>
 
