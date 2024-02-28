@@ -16,7 +16,6 @@ class UserController {
     try {
       const userId = req.params.id;
       const user = await UserService.getUserById(userId);
-      console.log(user);
       res.json(user);
     } catch (error) {
       res.status(500).json({ message: error.message });

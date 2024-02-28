@@ -41,27 +41,26 @@ class sessionService {
 
     static async userJoinSession(gameId, userId) {
         try {
+
             // Retrieve sessionId based on gameId
             const sessionQuery = await client.execute(
                 `SELECT sessionId FROM sessions WHERE gameId = ?`,
                 [gameId]
             );
-    
+
             if (sessionQuery.rows.length === 0) {
                 throw new Error('Session not found for the provided gameId.');
             }
-    
+
             const sessionId = sessionQuery.rows[0].sessionId;
-    
+
             // Insert user into the users_session table with prepared statements to avoid SQL injection
             const result = await client.execute(
                 `INSERT INTO users_session (sessionId, userId) VALUES (?, ?)`,
                 [sessionId, userId]
             );
-    
             return result;
         } catch (error) {
-            console.error(error);
             throw error;
         }
     }

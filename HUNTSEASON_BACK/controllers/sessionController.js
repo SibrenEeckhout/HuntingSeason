@@ -14,7 +14,6 @@ class sessionController {
       
       // Add the session to the database
       const sessionId = await sessionService.addSessionToDatabase(newSession);
-      console.log(sessionId);
       // Return the newly inserted session ID
       res.json({ sessionId });
     } catch (error) {
@@ -32,20 +31,20 @@ class sessionController {
   }
 
   static async userJoin(req, res) {
-    console.log("twerkt");
     try {
-      console.log("twerkt");
-        const { gameId, userId } = req.params;
-        console.log(gameId, userId);
+        const { gameId } = req.body; // Access gameId from request body
+        const { userId } = req.params; // Access userId from request parameters
+        
         // Join the user in the session
-        const result = await sessionService.userJoinSession(gameId, userId);
+        await sessionService.userJoinSession(gameId, userId);
 
         // Return the result
-        res.json(result);
+        res.json("User added successfully.");
     } catch (error) {
+        console.log("error");
         res.status(500).json({ message: error.message });
     }
-  }
+}
 }
 
 export default sessionController;
