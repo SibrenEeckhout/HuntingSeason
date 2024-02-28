@@ -31,22 +31,31 @@ class ApiService {
 
   async post(url, data = {}) {
     try {
-        const response = await fetch(url, {
+      console.log(url);
+        const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+            }
+        };
+
+        if (Object.keys(data).length !== 0) {
+            requestOptions.body = JSON.stringify(data);
+        }
+
+        const response = await fetch(url, requestOptions);
+
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
+
         return await response.json();
     } catch (error) {
         console.error('Error posting data:', error);
         throw error;
     }
 }
+
 
 }
 

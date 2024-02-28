@@ -19,16 +19,19 @@
     event.preventDefault(); 
 
     try {
-      const userId = UserStore.retrieveIdFromCache();
+        const userId = UserStore.retrieveIdFromCache();
 
-      const response = await ApiService.post(`http://localhost:8000/sessions/session/${gameId}/join/${userId}`, null);
-      UserStore.loadTokenToCache(response.token);
-      UserStore.loadIdToCache(response.user.id);
-      handleClick("home");
+        const data = {
+            gameId: gameId // Include gameId in the request body
+        };
+
+        const response = await ApiService.post(`http://localhost:8000/sessions/session/join/${userId}`, data); // Remove gameId from the URL
+        handleClick("home");
     } catch (error) {
-      console.error('Error registering user:', error);
+        console.error('Error joining game:', error);
     }
-    }
+}   
+
 </script>
 
 <section>
